@@ -1,4 +1,4 @@
-- hosts: all localhost
+- hosts: kube
   become: yes
   tasks:
    - name: install remote apt deps
