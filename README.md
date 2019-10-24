@@ -1,6 +1,10 @@
 # kube-cluster - use ansible to setup/deploy kubeadm as well as kvm on a nodes
 
-Basic ansible playbooks to setup KVM and deploy kubeadm
+Basic ansible playbooks to setup KVM and deploy kubeadm, after running these playbooks you should have a function kubernetes deployment that supports running kubevirt.
+
+## assign-hostnames
+
+This gives us the ability to fix up VMs that used a template or qcow file and all have the same hostname.  Used the ansible_hostname specified for the ip address in the hosts.ini file.  Changes the hostname, sets up `/etc/hosts` and does a reboot.
 
 ## kube-dependencies
 

@@ -1,0 +1,23 @@
+- hosts: kube
+  tasks:
+    - name:
+      debug:
+        msg: "ansible inventory name: {{ inventory_hostname }}"
+
+    - name:
+      become: true
+      hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: add myself to /etc/hosts
+      become: true
+      lineinfile:
+        dest: /etc/hosts
+        regexp: '^127\.0\.0\.1[ \t]+localhost'
+        line: "127.0.0.1 localhost {{ inventory_hostname }}"
+        state: present
+
+    - name: reboot node
+      become: true
+      reboot:
+        reboot_timeout: 3600

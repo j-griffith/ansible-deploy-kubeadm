@@ -1,5 +1,9 @@
 - hosts: master
   tasks:
+    - name: reset kubeadm
+      become: true
+      shell: kubeadm reset -f
+
     - name: initialize the cluster
       become: true
       shell: kubeadm init --pod-network-cidr=10.244.0.0/16
