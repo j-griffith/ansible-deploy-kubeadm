@@ -34,6 +34,14 @@
        state: present
        update_cache: true
 
+   - name: 'add users to docker group'
+     user:
+       name: 'debian'
+       groups: 'docker'
+       append: 'yes'
+     with_items: '{{ docker_group_members }}'
+     when: 'docker_group_members is defined'
+
    - name: add Kubernetes apt-key
      apt_key:
        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
